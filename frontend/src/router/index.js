@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Service from '@/components/Service'
-import Bootstrap from '@/components/Bootstrap'
-import User from '@/components/User'
+import TimeTable from '@/components/TimeTable'
+import Discipline from '@/components/Discipline'
 
 Vue.use(Router)
 
@@ -15,19 +14,14 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/callservice',
-      name: 'Service',
-      component: Service
+      path: '/timetable',
+      name: 'TimeTable',
+      component: TimeTable
     },
     {
-      path: '/bootstrap',
-      name: 'Bootstrap',
-      component: Bootstrap
-    },
-    {
-      path: '/user',
-      name: 'User',
-      component: User
+      path: '/disciplines',
+      name: 'Disciplines',
+      component: Discipline
     }
   ]
 })

@@ -1,53 +1,68 @@
 <template>
   <div class="hello">
-    <img src="./../assets/spring-boot-vuejs-logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>See the sources here: </h2>
+    <h3>{{ msg }}</h3>
+    <h4>Исходный код этого проекта можно найти здесь: </h4>
     <ul>
-      <li><a href="https://github.com/jonashackt/spring-boot-vuejs" target="_blank">github.com/jonashackt/spring-boot-vuejs</a></li>
+      <li>
+        <a href="https://github.com/Nirvandil/coursework" target="_blank">github.com/Nirvandil/coursework</a>
+      </li>
     </ul>
-    <h3>This site contains more stuff :)</h3>
-    <ul>
-      <li>HowTo call REST-Services:</li>
-      <li><a href="/#/callservice/" target="_blank">/callservice</a></li>
-      <li>HowTo to play around with Bootstrap UI components:</li>
-      <li><a href="/#/bootstrap/" target="_blank">/bootstrap</a></li>
-      <li>HowTo to interact with the Spring Boot database backend:</li>
-      <li><a href="/#/user/" target="_blank">/user</a></li>
-    </ul>
+    <h4>Этот сайт содержит кое-что ещё :)</h4>
+    <b-list-group>
+      <b-list-group-item>
+        Можно посмотреть расписание (сегодняшние пары подсвечиваются):
+        <a href="/#/timetable" target="_blank">/timetable</a>
+      </b-list-group-item>
+      <b-list-group-item>
+        Можно просмотреть список студентов:
+        <a href="/#/students/" target="_blank">/students</a>
+      </b-list-group-item>
+      <b-list-group-item>
+        Можно просмотреть список преподавателей:
+        <a href="/#/teachers/" target="_blank">/teachers</a>
+      </b-list-group-item>
+      <b-list-group-item>
+        Можно просмотреть список аудиторий:
+        <a href="/#/auditories/" target="_blank">/auditories</a>
+      </b-list-group-item>
+      <b-list-group-item>
+        И, наконец, можно создать пару:
+        <a href="/#/workpairs/" target="_blank">/workpairs</a>
+      </b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'hello',
+  export default {
+    name: 'hello',
 
-  data () {
-    return {
-      msg: 'Welcome to your Vue.js powered Spring Boot App'
+    data() {
+      return {
+        msg: 'Добро пожаловать в курсовую работу по базам данных студента Сухарева Владимира группы ЗИ16.'
+      }
     }
   }
-}
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
 
-a {
-  color: #42b983;
-}
+  a {
+    color: #42b983;
+  }
 </style>

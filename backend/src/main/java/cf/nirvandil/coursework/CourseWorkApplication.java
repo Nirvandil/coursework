@@ -1,12 +1,12 @@
-package de.jonashackt.springbootvuejs;
+package cf.nirvandil.coursework;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootVuejsApplication {
+public class CourseWorkApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootVuejsApplication.class, args);
+		SpringApplication.run(CourseWorkApplication.class, args);
 	}
 }

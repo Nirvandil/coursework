@@ -1,14 +1,16 @@
-# spring-boot-vuejs
+# course work
 
-[![Build Status](https://travis-ci.org/jonashackt/spring-boot-vuejs.svg?branch=master)](https://travis-ci.org/jonashackt/spring-boot-vuejs)
-[![Coverage Status](https://coveralls.io/repos/github/jonashackt/spring-boot-vuejs/badge.svg?branch=master)](https://coveralls.io/github/jonashackt/spring-boot-vuejs?branch=master)
-[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/jonashackt/spring-boot-vuejs/blob/master/LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/Nirvandil/coursework/blob/master/LICENSE)
 
-![localhost-first-run](https://github.com/jonashackt/spring-boot-vuejs/blob/master/localhost-first-run.png)
+![localhost-first-run](https://github.com/Nirvandil/coursework/blob/master/localhost-first-run.png)
 
-A live deployment is available on Heroku: https://spring-boot-vuejs.herokuapp.com
+A live deployment is available on Heroku: https://coursework-sukharev.herokuapp.com
 
-There´s also a blog post about this project available here: https://blog.codecentric.de/en/2018/04/spring-boot-vuejs/
+There´s also a blog post about creating project on Spring Boot + Vue.js available here: https://blog.codecentric.de/en/2018/04/spring-boot-vuejs/
+
+Many thanks to the original author. This project is based on: https://github.com/jonashackt/spring-boot-vuejs
+
+Text below is completely written by original author.
 
 ## In Search of a new Webfrontend-Framework after 2 Years of absence...
 
@@ -20,11 +22,11 @@ Key points are:
 * Angular 2 isn’t the way to go, if you know version 1 (complete re-write, only with Typescript, loss of many of 1’s advantages, Angular 4 is coming)
 * React  (facebookish problems (licence), need to choose btw. Redux & MObX, harder learning curve, slower coding speed)
 
-![comparison-angular-react-vuejs](https://github.com/jonashackt/spring-boot-vuejs/blob/master/comparison-angular-react-vuejs.png)
+![comparison-angular-react-vuejs](https://github.com/Nirvandil/coursework/blob/master/comparison-angular-react-vuejs.png)
 
 And the [introduction phrase](https://vuejs.org/v2/guide/index.html) sounds really great:
 
-> Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
+> Vue (pronounced /vjuː/, like view) is a progressive framework for building student interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is very easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.
 
 So I think, it could be a good idea to invest a day or so into Vue.js. Let’s have a look here!
 

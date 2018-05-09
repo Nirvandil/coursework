@@ -4,8 +4,8 @@
 	<artifactId>frontend</artifactId>
 
 	<parent>
-		<groupId>de.jonashackt</groupId>
-		<artifactId>spring-boot-vuejs</artifactId>
+		<groupId>cf.nirvandil</groupId>
+		<artifactId>coursework</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
@@ -30,7 +30,7 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<configuration>
-							<nodeVersion>v9.11.1</nodeVersion>
+							<nodeVersion>v10.1.0</nodeVersion>
 						</configuration>
 					</execution>
 					<!-- Install all project dependencies -->
