@@ -5,6 +5,7 @@ import cf.nirvandil.coursework.dto.TeacherDTO;
 import cf.nirvandil.coursework.model.Discipline;
 import cf.nirvandil.coursework.repo.DisciplineRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class DisciplineController {
         this.disciplineRepo = disciplineRepo;
     }
 
+    @Cacheable("disciplines")
     @GetMapping
     public List<DisciplineDTO> getDisciplines() {
         return disciplineRepo.findAll().stream().map(this::toDisciplineDTO).collect(toList());

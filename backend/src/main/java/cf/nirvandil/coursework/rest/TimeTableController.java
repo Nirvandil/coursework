@@ -42,6 +42,7 @@ public class TimeTableController {
                                 workPairDTO.setGroupName(workPair.getGroup().getName());
                                 workPairDTO.setPairNumber(workPair.getPair().getNumber());
                                 workPairDTO.setTeacher(workPair.getTeacher().getName());
+                                workPairDTO.setId(workPair.getId());
                                 return workPairDTO;
                             }).collect(toList());
                     timeTableDTO.setWorkPairs(workPairDTOS);

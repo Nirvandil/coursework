@@ -84,8 +84,7 @@
     data() {
       return {
         fields: [
-          {key: 'name', label: 'Название', sortable: true},
-          {key: 'description', label: 'Описание', sortable: true},
+          {key: 'name', label: 'Имя', sortable: true},
           {key: 'actions', label: 'Действия'}
         ],
         currentPage: 1,
@@ -119,12 +118,11 @@
         this.modalInfo.content = ''
       },
       onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
       getItems() {
-        return AXIOS.get('/disciplines')
+        return AXIOS.get('/teachers')
           .then(result => result.data)
           .catch(console.log)
       }

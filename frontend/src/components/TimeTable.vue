@@ -36,9 +36,10 @@
     </b-row>
 
     <!-- Main table element -->
-    <b-table show-empty
+    <b-table ref="table"
+             show-empty
              stacked="md"
-             :items="getTimeTable"
+             :items="getItems"
              :fields="fields"
              :current-page="currentPage"
              :per-page="perPage"
@@ -51,12 +52,12 @@
              @filtered="onFiltered"
     >
       <template slot="actions" slot-scope="row">
-        <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-        <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-          Info modal
-        </b-button>
         <b-button size="sm" @click.stop="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+          {{ row.detailsShowing ? 'Скрыть' : 'Показать' }} детали
+        </b-button>
+        <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
+        <b-button size="sm" variant="danger" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
+          Удалить
         </b-button>
       </template>
       <template slot="row-details" slot-scope="row">
@@ -69,7 +70,7 @@
     </b-table>
 
     <!-- Info modal -->
-    <b-modal id="modalInfo" @hide="resetModal" :title="modalInfo.title" ok-only>
+    <b-modal id="modalInfo" @hide="resetModal" :title="modalInfo.title" @ok="deletePair">
       <pre>{{ modalInfo.content }}</pre>
     </b-modal>
 
@@ -84,40 +85,13 @@
     data() {
       return {
         fields: [
-          {
-            key: 'pairNumber',
-            label: 'Номер пары',
-            sortable: true
-          },
-          {
-            key: 'groupName',
-            label: 'Имя группы',
-            sortable: true
-          },
-          {
-            key: 'discipline',
-            label: 'Предмет',
-            sortable: true
-          },
-          {
-            key: 'teacher',
-            label: 'Преподаватель',
-            sortable: true
-          },
-          {
-            key: 'auditoryNumber',
-            label: 'Номер аудитории',
-            sortable: true
-          },
-          {
-            key: 'date',
-            label: 'Дата',
-            sortable: true
-          },
-          {
-            key: 'actions',
-            label: 'Действия'
-          }
+          {key: 'pairNumber', label: 'Номер пары', sortable: true},
+          {key: 'groupName', label: 'Имя группы', sortable: true},
+          {key: 'discipline', label: 'Предмет', sortable: true},
+          {key: 'teacher', label: 'Преподаватель', sortable: true},
+          {key: 'auditoryNumber', label: 'Номер аудитории', sortable: true},
+          {key: 'date', label: 'Дата', sortable: true},
+          {key: 'actions', label: 'Действия'}
         ],
         currentPage: 1,
         perPage: 5,
@@ -126,7 +100,8 @@
         sortBy: null,
         sortDesc: false,
         filter: null,
-        modalInfo: {title: '', content: ''}
+        modalInfo: {title: '', content: ''},
+        toDelete: null
       }
     },
     computed: {
@@ -141,21 +116,24 @@
     },
     methods: {
       info(item, index, button) {
-        this.modalInfo.title = `Row index: ${index}`
-        this.modalInfo.content = JSON.stringify(item, null, 2)
+        this.modalInfo.title = `Подтвердите действие`
+        this.modalInfo.content =
+          `Вы уверены, что хотите удалить ${item.pairNumber} пару
+        ${item.discipline} группы ${item.groupName}
+        за ${item.date}?`
+        this.toDelete = item.id
         this.$root.$emit('bv::show::modal', 'modalInfo', button)
       },
       resetModal() {
         this.modalInfo.title = ''
         this.modalInfo.content = ''
+        this.toDelete = null
       },
       onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
-        console.log('Filtered items: ', filteredItems)
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
-      getDisciplines() {
+      getItems() {
         const today = new Date().setHours(0, 0, 0, 0)
         return AXIOS.get('/time-table')
           .then(result => {
@@ -169,6 +147,11 @@
               return item
             })
           })
+          .catch(console.log)
+      },
+      deletePair() {
+        AXIOS.delete(`/work-pairs/${this.toDelete}`)
+          .then(_ => this.$refs.table.refresh())
           .catch(console.log)
       }
     }
