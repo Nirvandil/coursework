@@ -1,12 +1,14 @@
 package cf.nirvandil.coursework.rest;
 
 import cf.nirvandil.coursework.dto.WorkPairDTO;
+import cf.nirvandil.coursework.dto.responses.EmptyResponse;
 import cf.nirvandil.coursework.model.WorkPair;
 import cf.nirvandil.coursework.repo.DisciplineRepo;
 import cf.nirvandil.coursework.repo.GroupsRepo;
 import cf.nirvandil.coursework.repo.TeachersRepo;
 import cf.nirvandil.coursework.repo.WorkPairRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static cf.nirvandil.coursework.dto.responses.Status.OK;
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -62,8 +65,9 @@ public class WorkPairsController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteWorkPair(@PathVariable Long id) {
+    public ResponseEntity<EmptyResponse> deleteWorkPair(@PathVariable Long id) {
         workPairRepo.deleteById(id);
+        return ResponseEntity.ok(new EmptyResponse(OK));
     }
 
 }
