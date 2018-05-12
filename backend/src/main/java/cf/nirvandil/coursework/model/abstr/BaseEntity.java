@@ -2,9 +2,7 @@ package cf.nirvandil.coursework.model.abstr;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @Data
 @MappedSuperclass

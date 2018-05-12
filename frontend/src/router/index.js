@@ -4,6 +4,7 @@ import Hello from '../components/Hello'
 import TimeTable from '../components/TimeTable'
 import Discipline from '../components/Discipline'
 import Teacher from '../components/Teacher'
+import Student from '../components/Student'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/teachers',
       name: 'Teacher',
       component: Teacher
+    },
+    {
+      path: '/students',
+      name: 'Student',
+      component: Student
     }
   ]
 })

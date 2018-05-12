@@ -1,11 +1,6 @@
 package cf.nirvandil.coursework.model.abstr;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

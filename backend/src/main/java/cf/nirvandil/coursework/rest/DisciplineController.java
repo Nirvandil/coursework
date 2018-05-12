@@ -1,14 +1,12 @@
 package cf.nirvandil.coursework.rest;
 
-import cf.nirvandil.coursework.dto.DisciplineDTO;
-import cf.nirvandil.coursework.dto.TeacherDTO;
 import cf.nirvandil.coursework.model.Discipline;
 import cf.nirvandil.coursework.repo.DisciplineRepo;
+import cf.nirvandil.coursework.rest.dto.DisciplineDTO;
+import cf.nirvandil.coursework.rest.dto.TeacherDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

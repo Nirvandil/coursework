@@ -1,5 +1,6 @@
 <template>
   <b-container fluid>
+    <navigation-menu :teach="true"></navigation-menu>
     <!-- User Interface controls -->
     <b-row>
       <b-col md="6" class="my-1">
@@ -78,9 +79,11 @@
 
 <script>
   import {AXIOS} from './http-common'
+  import NavigationMenu from './NavigationMenu'
 
   export default {
     name: 'Teacher',
+    components: {NavigationMenu},
     data() {
       return {
         fields: [

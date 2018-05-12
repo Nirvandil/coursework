@@ -1,17 +1,12 @@
 package cf.nirvandil.coursework.model;
 
 import cf.nirvandil.coursework.model.abstr.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Data
 @Table(name = "TIME_TABLE")
@@ -20,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TimeTable extends BaseEntity {
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = ALL)
     @JoinColumn(name = "timeTableId", referencedColumnName = "id")
     private Set<WorkPair> pairs;
 }

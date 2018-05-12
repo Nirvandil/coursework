@@ -1,22 +1,15 @@
 package cf.nirvandil.coursework.model;
 
 import cf.nirvandil.coursework.model.abstr.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
-@Table(name = "PAIRS")
+@Table(name = "PAIRS", indexes = @Index(name = "pair_numbers_idx", columnList = "number", unique = true))
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)

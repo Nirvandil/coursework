@@ -1,6 +1,6 @@
 <template>
   <b-container fluid>
-    <navigation-menu :disc="true"></navigation-menu>
+    <navigation-menu :stud="true"></navigation-menu>
     <!-- User Interface controls -->
     <b-row>
       <b-col md="6" class="my-1">
@@ -82,13 +82,13 @@
   import NavigationMenu from './NavigationMenu'
 
   export default {
-    name: 'Teacher',
+    name: 'Student',
     components: {NavigationMenu},
     data() {
       return {
         fields: [
-          {key: 'name', label: 'Название', sortable: true},
-          {key: 'description', label: 'Описание', sortable: true},
+          {key: 'name', label: 'Имя', sortable: true},
+          {key: 'groupName', label: 'Группа', sortable: true},
           {key: 'actions', label: 'Действия'}
         ],
         currentPage: 1,
@@ -127,7 +127,7 @@
         this.currentPage = 1
       },
       getItems() {
-        return AXIOS.get('/disciplines')
+        return AXIOS.get('/students')
           .then(result => result.data)
           .catch(console.log)
       }

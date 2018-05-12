@@ -1,8 +1,6 @@
-package cf.nirvandil.coursework.dto;
+package cf.nirvandil.coursework.rest.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,4 +9,5 @@ import java.util.List;
 @AllArgsConstructor
 public class TimeTableDTO {
     private List<WorkPairDTO> workPairs;
+    private Long id;
 }

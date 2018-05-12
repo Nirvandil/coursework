@@ -1,27 +1,20 @@
 package cf.nirvandil.coursework.rest;
 
-import cf.nirvandil.coursework.dto.WorkPairDTO;
-import cf.nirvandil.coursework.dto.responses.EmptyResponse;
-import cf.nirvandil.coursework.model.WorkPair;
-import cf.nirvandil.coursework.repo.DisciplineRepo;
-import cf.nirvandil.coursework.repo.GroupsRepo;
-import cf.nirvandil.coursework.repo.TeachersRepo;
-import cf.nirvandil.coursework.repo.WorkPairRepo;
+import cf.nirvandil.coursework.model.*;
+import cf.nirvandil.coursework.repo.*;
+import cf.nirvandil.coursework.rest.dto.WorkPairDTO;
+import cf.nirvandil.coursework.rest.dto.responses.EmptyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
+import java.util.function.Supplier;
 
-import static cf.nirvandil.coursework.dto.responses.Status.OK;
-import static java.util.stream.Collectors.toList;
+import static cf.nirvandil.coursework.rest.dto.responses.Status.OK;
+import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @Transactional
@@ -31,37 +24,46 @@ public class WorkPairsController {
 
     private final WorkPairRepo workPairRepo;
     private final DisciplineRepo disciplineRepo;
-    private final TeachersRepo teachersRepo;
-    private final GroupsRepo groupsRepo;
+    private final TeacherRepo teacherRepo;
+    private final GroupRepo groupRepo;
+    private final PairRepo pairRepo;
+    private final AuditoryRepo auditoryRepo;
+    private final TimeTableRepo timeTableRepo;
 
     @Autowired
     public WorkPairsController(WorkPairRepo workPairRepo,
                                DisciplineRepo disciplineRepo,
-                               TeachersRepo teachersRepo,
-                               GroupsRepo groupsRepo) {
+                               TeacherRepo teacherRepo,
+                               GroupRepo groupRepo,
+                               PairRepo pairRepo,
+                               AuditoryRepo auditoryRepo,
+                               TimeTableRepo timeTableRepo) {
         this.workPairRepo = workPairRepo;
         this.disciplineRepo = disciplineRepo;
-        this.teachersRepo = teachersRepo;
-        this.groupsRepo = groupsRepo;
-    }
-
-    @GetMapping
-    public List<WorkPairDTO> getWorkPairs() {
-        return workPairRepo.findAll().stream().map(this::toWorkPairDTO).collect(toList());
-    }
-
-    private WorkPairDTO toWorkPairDTO(WorkPair workPair) {
-        return new WorkPairDTO(workPair.getId(), workPair.getPair().getNumber(), workPair.getGroup().getName(),
-                workPair.getDiscipline().getName(), workPair.getTeacher().getName(),
-                workPair.getAuditory().getNumber(), workPair.getDate());
+        this.teacherRepo = teacherRepo;
+        this.groupRepo = groupRepo;
+        this.pairRepo = pairRepo;
+        this.auditoryRepo = auditoryRepo;
+        this.timeTableRepo = timeTableRepo;
     }
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public void createWorkPair(WorkPairDTO workPairDTO) {
-        WorkPair workPair = new WorkPair();
-        workPair.setDate(workPairDTO.getDate());
-        workPairRepo.save(workPair);
+    public void createWorkPair(@Valid @RequestBody WorkPairDTO workPairDTO) {
+        TimeTable timeTable = timeTableRepo.findById(workPairDTO.getTimeTableId())
+                .orElseThrow(notFoundEntity("TimeTable", String.valueOf(workPairDTO.getTimeTableId())));
+        Group group = groupRepo.findByName(workPairDTO.getGroupName())
+                .orElseThrow(notFoundEntity("Group", workPairDTO.getGroupName()));
+        Discipline discipline = disciplineRepo.findByName(workPairDTO.getDiscipline())
+                .orElseThrow(notFoundEntity("Discipline", workPairDTO.getDiscipline()));
+        Pair pair = pairRepo.findByNumber(workPairDTO.getPairNumber())
+                .orElseThrow(notFoundEntity("Pair", String.valueOf(workPairDTO.getPairNumber())));
+        Teacher teacher = teacherRepo.findById(workPairDTO.getTeacherId())
+                .orElseThrow(notFoundEntity("Teacher", String.valueOf(workPairDTO.getTeacherId())));
+        Auditory auditory = auditoryRepo.findByNumber(workPairDTO.getAuditoryNumber())
+                .orElseThrow(notFoundEntity("Auditory", workPairDTO.getAuditoryNumber()));
+        timeTable.getPairs().add(new WorkPair(pair, group, discipline, teacher, auditory, workPairDTO.getDate()));
+        timeTableRepo.save(timeTable);
     }
 
     @DeleteMapping("/{id}")
@@ -70,4 +72,7 @@ public class WorkPairsController {
         return ResponseEntity.ok(new EmptyResponse(OK));
     }
 
+    private Supplier<EntityNotFoundException> notFoundEntity(String name, String value) {
+        return () -> new EntityNotFoundException(format("%s %s not found", name, value));
+    }
 }

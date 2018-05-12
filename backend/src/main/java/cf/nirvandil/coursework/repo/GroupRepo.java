@@ -3,5 +3,8 @@ package cf.nirvandil.coursework.repo;
 import cf.nirvandil.coursework.model.Group;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GroupsRepo extends JpaRepository<Group, Long> {
+import java.util.Optional;
+
+public interface GroupRepo extends JpaRepository<Group, Long> {
+    Optional<Group> findByName(String name);
 }

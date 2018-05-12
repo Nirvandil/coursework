@@ -1,17 +1,14 @@
 package cf.nirvandil.coursework.rest;
 
-import cf.nirvandil.coursework.dto.TimeTableDTO;
-import cf.nirvandil.coursework.dto.WorkPairDTO;
 import cf.nirvandil.coursework.model.TimeTable;
 import cf.nirvandil.coursework.model.WorkPair;
 import cf.nirvandil.coursework.repo.TimeTableRepo;
+import cf.nirvandil.coursework.rest.dto.TimeTableDTO;
+import cf.nirvandil.coursework.rest.dto.WorkPairDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -44,8 +41,10 @@ public class TimeTableController {
                                 workPairDTO.setTeacher(workPair.getTeacher().getName());
                                 workPairDTO.setId(workPair.getId());
                                 return workPairDTO;
-                            }).collect(toList());
+                            }).sorted(Comparator.comparingInt(WorkPairDTO::getPairNumber))
+                            .collect(toList());
                     timeTableDTO.setWorkPairs(workPairDTOS);
+                    timeTableDTO.setId(timeTable.getId());
                     return timeTableDTO;
                 }).collect(toList());
     }

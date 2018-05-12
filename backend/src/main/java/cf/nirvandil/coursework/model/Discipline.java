@@ -1,20 +1,13 @@
 package cf.nirvandil.coursework.model;
 
 import cf.nirvandil.coursework.model.abstr.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Data
-@Table(name = "DISCIPLINES")
+@Table(name = "DISCIPLINES", indexes = @Index(name = "discipline_names_idx", columnList = "name", unique = true))
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +18,8 @@ public class Discipline extends BaseEntity {
     private String description;
     @ManyToMany(mappedBy = "disciplines", fetch = FetchType.EAGER)
     private Set<Teacher> teachers;
+
+    public Discipline(String discipline) {
+        this.name = discipline;
+    }
 }
