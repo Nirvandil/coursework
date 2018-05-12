@@ -10,7 +10,7 @@
     <h4>Этот сайт содержит кое-что ещё :)</h4>
     <b-list-group>
       <b-list-group-item>
-        Можно посмотреть расписание (сегодняшние пары подсвечиваются):
+        Можно посмотреть и отредактировать расписание (сегодняшние пары подсвечиваются):
         <a href="/#/timetable" target="_blank">/timetable</a>
       </b-list-group-item>
       <b-list-group-item>
@@ -25,11 +25,11 @@
         Можно просмотреть список аудиторий:
         <a href="/#/auditories/" target="_blank">/auditories</a>
       </b-list-group-item>
-      <b-list-group-item>
-        И, наконец, можно создать пару:
-        <a href="/#/workpairs/" target="_blank">/workpairs</a>
-      </b-list-group-item>
     </b-list-group>
+    <br>
+    <br>
+    <p>Этот сайт мог бы быть несколько функциональнее, но это просто proof of concept, поэтому прошу понять и
+      простить</p>
   </div>
 </template>
 

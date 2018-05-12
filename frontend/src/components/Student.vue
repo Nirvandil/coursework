@@ -52,10 +52,6 @@
              @filtered="onFiltered"
     >
       <template slot="actions" slot-scope="row">
-        <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-        <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-          Info modal
-        </b-button>
         <b-button size="sm" @click.stop="row.toggleDetails">
           {{ row.detailsShowing ? 'Скрыть' : 'Показать' }} детали
         </b-button>
@@ -68,11 +64,6 @@
         </b-card>
       </template>
     </b-table>
-
-    <!-- Info modal -->
-    <b-modal id="modalInfo" @hide="resetModal" :title="modalInfo.title" ok-only>
-      <pre>{{ modalInfo.content }}</pre>
-    </b-modal>
 
   </b-container>
 </template>
@@ -92,7 +83,7 @@
           {key: 'actions', label: 'Действия'}
         ],
         currentPage: 1,
-        perPage: 5,
+        perPage: 10,
         totalRows: 0,
         pageOptions: [5, 10, 15],
         sortBy: null,

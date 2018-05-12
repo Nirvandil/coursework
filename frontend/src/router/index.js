@@ -5,6 +5,7 @@ import TimeTable from '../components/TimeTable'
 import Discipline from '../components/Discipline'
 import Teacher from '../components/Teacher'
 import Student from '../components/Student'
+import Auditory from '../components/Auditory'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/students',
       name: 'Student',
       component: Student
+    },
+    {
+      path: '/auditories',
+      name: 'Auditory',
+      component: Auditory
     }
   ]
 })

@@ -136,7 +136,7 @@
       </b-form>
       <div slot="modal-footer" class="w-100">
         <b-btn size="sm" class="float-right" variant="primary" @click="closeAddForm">
-          Отмена
+          Закрыть
         </b-btn>
       </div>
     </b-modal>
@@ -235,7 +235,6 @@
         AXIOS.delete(`/work-pairs/${this.toDelete}`)
           .then(_ => this.$refs.table.refresh())
           .catch(console.log)
-        this.closeAddForm()
       },
       createPair(evt) {
         evt.preventDefault()
@@ -243,7 +242,6 @@
         AXIOS.post('/work-pairs', this.form)
           .then(_ => this.$refs.table.refresh())
           .catch(console.log)
-        this.closeAddForm(null)
       },
       onReset(evt) {
         evt.preventDefault()
@@ -262,7 +260,7 @@
       closeAddForm(button) {
         this.$root.$emit('bv::hide::modal', 'addPair', button)
       },
-      changePair(pair) {
+      changeAuditory(pair) {
         alert(JSON.stringify(pair))
       },
       filterDisciplines(value) {

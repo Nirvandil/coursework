@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface AuditoryRepo extends JpaRepository<Auditory, Long> {
     Optional<Auditory> findByNumber(String number);
+
+    void deleteByNumber(String number);
 }

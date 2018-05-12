@@ -3,7 +3,6 @@ package cf.nirvandil.coursework.rest;
 import cf.nirvandil.coursework.model.*;
 import cf.nirvandil.coursework.repo.*;
 import cf.nirvandil.coursework.rest.dto.WorkPairDTO;
-import cf.nirvandil.coursework.rest.dto.responses.EmptyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +12,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.function.Supplier;
 
-import static cf.nirvandil.coursework.rest.dto.responses.Status.OK;
 import static java.lang.String.format;
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -67,9 +65,9 @@ public class WorkPairsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<EmptyResponse> deleteWorkPair(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteWorkPair(@PathVariable Long id) {
         workPairRepo.deleteById(id);
-        return ResponseEntity.ok(new EmptyResponse(OK));
+        return ResponseEntity.ok().build();
     }
 
     private Supplier<EntityNotFoundException> notFoundEntity(String name, String value) {
