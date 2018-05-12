@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar backend/target/backend-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -jar backend/target/backend-0.0.1-SNAPSHOT.jar --spring.datasource.url=$DATASOURCE_URL --spring.datasource.username=$DATASOURCE_USERNAME --spring.datasource.password=$DATASOURCE_PASSWORD
