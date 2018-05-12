@@ -6,12 +6,14 @@ import cf.nirvandil.coursework.repo.TimeTableRepo;
 import cf.nirvandil.coursework.rest.dto.TimeTableDTO;
 import cf.nirvandil.coursework.rest.dto.WorkPairDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
+@Transactional
 @RestController
 @RequestMapping("/api/time-table")
 public class TimeTableController {

@@ -6,12 +6,14 @@ import cf.nirvandil.coursework.rest.dto.DisciplineDTO;
 import cf.nirvandil.coursework.rest.dto.TeacherDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+@Transactional
 @RestController
 @RequestMapping("/api/disciplines")
 public class DisciplineController {
