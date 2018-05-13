@@ -6,6 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+import static javax.persistence.EnumType.STRING;
+
 @Data
 @Table(name = "WORK_PAIRS",
         uniqueConstraints = @UniqueConstraint(
@@ -30,4 +32,7 @@ public class WorkPair extends BaseEntity {
     private Auditory auditory;
     @Column(nullable = false)
     private LocalDate date;
+    @Column(nullable = false)
+    @Enumerated(STRING)
+    private WorkPairType type;
 }

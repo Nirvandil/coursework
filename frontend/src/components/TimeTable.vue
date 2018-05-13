@@ -104,6 +104,15 @@
                          v-model="form.discipline">
           </b-form-select>
         </b-form-group>
+        <b-form-group id="type"
+                      label="Тип занятия"
+                      label-for="discipline">
+          <b-form-select id="exampleInput7"
+                         :options="[{text: 'Экзамен', value: 'EXAM'}, {text: 'Обычное', value: 'REGULAR'}]"
+                         required
+                         v-model="form.type">
+          </b-form-select>
+        </b-form-group>
         <b-form-group id="auditory"
                       label="Аудитория"
                       label-for="auditory">
@@ -176,7 +185,8 @@
           discipline: null,
           auditoryNumber: null,
           date: null,
-          pairNumber: null
+          pairNumber: null,
+          type: 'REGULAR'
         },
         teachers: [],
         groups: [],
@@ -226,6 +236,9 @@
               if (today === pairDate) {
                 item._rowVariant = 'info'
               }
+              if (item.type === 'EXAM') {
+                item._rowVariant = 'warning'
+              }
               return item
             })
           })
@@ -260,7 +273,7 @@
       closeAddForm(button) {
         this.$root.$emit('bv::hide::modal', 'addPair', button)
       },
-      changeAuditory(pair) {
+      changePair(pair) {
         alert(JSON.stringify(pair))
       },
       filterDisciplines(value) {
