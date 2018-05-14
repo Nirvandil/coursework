@@ -15,6 +15,7 @@ import java.util.Set;
 public class University extends BaseEntity {
     @OneToMany(mappedBy = "university")
     private Set<Faculty> faculties;
+    @Column(nullable = false)
     private String name;
     private String description;
     @OneToMany(mappedBy = "university")
