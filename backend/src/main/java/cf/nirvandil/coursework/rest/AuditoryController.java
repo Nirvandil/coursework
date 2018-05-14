@@ -51,6 +51,6 @@ public class AuditoryController {
     @ResponseStatus(CONFLICT)
     @ExceptionHandler(DataIntegrityViolationException.class)
     public String handleConstraint(Exception e) {
-        return ((ConstraintViolationException) e.getCause()).getSQLException().getMessage().split("\n")[1];
+        return ((ConstraintViolationException) e.getCause()).getSQLException().getMessage();
     }
 }

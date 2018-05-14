@@ -24,7 +24,7 @@ INSERT INTO disciplines (id, description, name) VALUES
   (10, '', 'Педагогика'),
   (11, '', 'Архитектура встроенных систем'),
   (12, '', 'Разработка серверных приложений');
-INSERT INTO groups (id, `name`, course_id) VALUES
+INSERT INTO `groups` (id, `name`, course_id) VALUES
   (5,  'ЗИ16', 3);
 INSERT INTO pairs (id, number, start_time, finish_time) VALUES
   (1, 1, '08:00:00', '09:30:00'),
@@ -76,7 +76,7 @@ INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES
 INSERT INTO time_table (id) VALUES
   (17);
 INSERT INTO work_pairs
-(id, `date`, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, `type`)
+(id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type)
 VALUES
   (16, '2018-05-11', 1, 9, 5, 2, 18, 17, 'REGULAR'),
   (17, '2018-05-11', 2, 6, 5, 3, 17, 17, 'REGULAR'),

@@ -9,7 +9,7 @@ import java.util.Set;
 @Data
 @Table(name = "UNIVERSITY")
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "faculties")
 @NoArgsConstructor
 @AllArgsConstructor
 public class University extends BaseEntity {

@@ -16,7 +16,7 @@ import static javax.persistence.EnumType.STRING;
         )
 )
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "timeTable")
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkPair extends BaseEntity {
@@ -35,6 +35,16 @@ public class WorkPair extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(STRING)
     private WorkPairType type;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TimeTable timeTable;
+
+    public WorkPair(Pair pair, Group group, Discipline discipline, Teacher teacher, Auditory auditory, LocalDate date, WorkPairType type) {
+        this.pair = pair;
+        this.group = group;
+        this.discipline = discipline;
+        this.teacher = teacher;
+        this.auditory = auditory;
+        this.date = date;
+        this.type = type;
+    }
 }

@@ -17,4 +17,9 @@ import static javax.persistence.CascadeType.ALL;
 public class TimeTable extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = ALL, mappedBy = "timeTable")
     private Set<WorkPair> pairs;
+
+    public void addPair(WorkPair pair) {
+        pairs.add(pair);
+        pair.setTimeTable(this);
+    }
 }

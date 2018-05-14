@@ -11,7 +11,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true, exclude = "courses")
+@EqualsAndHashCode(callSuper = true, exclude = {"courses", "university"})
 public class Faculty extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String name;

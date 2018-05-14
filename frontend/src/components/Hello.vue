@@ -10,7 +10,7 @@
     <h4>Этот сайт содержит кое-что ещё :)</h4>
     <b-list-group>
       <b-list-group-item>
-        Можно посмотреть и отредактировать расписание (сегодняшние пары подсвечиваются):
+        Можно посмотреть и отредактировать расписание (сегодняшние пары и экзамены подсвечиваются):
         <a href="/#/timetable" target="_blank">/timetable</a>
       </b-list-group-item>
       <b-list-group-item>
@@ -18,11 +18,15 @@
         <a href="/#/students/" target="_blank">/students</a>
       </b-list-group-item>
       <b-list-group-item>
-        Можно просмотреть список преподавателей:
+        Можно просмотреть список преподавателей и дисциплин:
         <a href="/#/teachers/" target="_blank">/teachers</a>
       </b-list-group-item>
       <b-list-group-item>
-        Можно просмотреть список аудиторий:
+        И в обратную сторону:
+        <a href="/#/disciplines/" target="_blank">/disciplines</a>
+      </b-list-group-item>
+      <b-list-group-item>
+        Можно просмотреть список аудиторий и добавить новую:
         <a href="/#/auditories/" target="_blank">/auditories</a>
       </b-list-group-item>
     </b-list-group>

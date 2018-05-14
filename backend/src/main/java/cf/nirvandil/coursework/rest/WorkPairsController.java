@@ -60,7 +60,8 @@ public class WorkPairsController {
                 .orElseThrow(notFoundEntity("Teacher", String.valueOf(workPairDTO.getTeacherId())));
         Auditory auditory = auditoryRepo.findByNumber(workPairDTO.getAuditoryNumber())
                 .orElseThrow(notFoundEntity("Auditory", workPairDTO.getAuditoryNumber()));
-        timeTable.getPairs().add(new WorkPair(pair, group, discipline, teacher, auditory, workPairDTO.getDate(), workPairDTO.getType(), timeTable));
+        WorkPair workPair = new WorkPair(pair, group, discipline, teacher, auditory, workPairDTO.getDate(), workPairDTO.getType());
+        timeTable.addPair(workPair);
         timeTableRepo.save(timeTable);
     }
 
