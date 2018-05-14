@@ -78,13 +78,13 @@ INSERT INTO time_table (id) VALUES
 INSERT INTO work_pairs
 (id, `date`, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, `type`)
 VALUES
-  (16, TO_DATE('11.05.2018', 'DD.MM.YYYY'), 1, 9, 5, 2, 18, 17, 'REGULAR'),
-  (17, TO_DATE('11.05.2018', 'DD.MM.YYYY'), 2, 6, 5, 3, 17, 17, 'REGULAR'),
-  (18, TO_DATE('11.05.2018', 'DD.MM.YYYY'), 7, 5, 5, 4, 16, 17, 'REGULAR'),
-  (19, TO_DATE('11.05.2018', 'DD.MM.YYYY'), 3, 9, 5, 5, 15, 17, 'REGULAR'),
-  (20, TO_DATE('12.05.2018', 'DD.MM.YYYY'), 3, 6, 5, 2, 17, 17, 'REGULAR'),
-  (21, TO_DATE('12.05.2018', 'DD.MM.YYYY'), 3, 6, 5, 3, 17, 17, 'REGULAR'),
-  (22, TO_DATE('14.05.2018', 'DD.MM.YYYY'), 4, 6, 5, 2, 17, 17, 'REGULAR'),
-  (23, TO_DATE('14.05.2018', 'DD.MM.YYYY'), 4, 6, 5, 3, 17, 17, 'REGULAR'),
-  (24, TO_DATE('14.05.2018', 'DD.MM.YYYY'), 4, 10, 5, 4, 19, 17, 'REGULAR'),
-  (25, TO_DATE('14.05.2018', 'DD.MM.YYYY'), 4, 10, 5, 5, 19, 17, 'REGULAR');
+  (16, '2018-05-11', 1, 9, 5, 2, 18, 17, 'REGULAR'),
+  (17, '2018-05-11', 2, 6, 5, 3, 17, 17, 'REGULAR'),
+  (18, '2018-05-11', 7, 5, 5, 4, 16, 17, 'REGULAR'),
+  (19, '2018-05-11', 3, 9, 5, 5, 15, 17, 'REGULAR'),
+  (20, '2018-05-12', 3, 6, 5, 2, 17, 17, 'REGULAR'),
+  (21, '2018-05-12', 3, 6, 5, 3, 17, 17, 'REGULAR'),
+  (22, '2018-05-14', 4, 6, 5, 2, 17, 17, 'REGULAR'),
+  (23, '2018-05-14', 4, 6, 5, 3, 17, 17, 'REGULAR'),
+  (24, '2018-05-14', 4, 10, 5, 4, 19, 17, 'REGULAR'),
+  (25, '2018-05-14', 4, 10, 5, 5, 19, 17, 'REGULAR');
