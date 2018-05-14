@@ -35,4 +35,6 @@ public class WorkPair extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(STRING)
     private WorkPairType type;
+    @ManyToOne(optional = false)
+    private TimeTable timeTable;
 }

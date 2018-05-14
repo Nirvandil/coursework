@@ -13,6 +13,8 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true, exclude = "disciplines")
 public class Teacher extends NamedEntity {
+    @ManyToOne(optional = false)
+    private University university;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "TEACHER_DISCIPLINES")
     private Set<Discipline> disciplines;

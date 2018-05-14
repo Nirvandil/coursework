@@ -18,4 +18,6 @@ public class Faculty extends BaseEntity {
     private String description;
     @OneToMany(mappedBy = "faculty")
     private Set<Course> courses;
+    @ManyToOne(optional = false)
+    private University university;
 }
