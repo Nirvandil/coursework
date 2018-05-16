@@ -21,7 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true, exclude = "groups")
 @Check(constraints = "number > 0 AND number < 6")
-class Course extends BaseEntity {
+public class Course extends BaseEntity {
     @Min(1)
     @Max(6)
     @Column(nullable = false, updatable = false)
