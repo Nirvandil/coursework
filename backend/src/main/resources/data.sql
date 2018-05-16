@@ -91,26 +91,3 @@ VALUES
   (23, '2018-05-14', 4, 6, 5, 3, 17, 17, 1),
   (24, '2018-05-14', 4, 10, 5, 4, 19, 17, 1),
   (25, '2018-05-14', 4, 10, 5, 5, 19, 17, 1)^;
-
-CREATE TRIGGER check_number
-  BEFORE INSERT
-  ON courses
-  FOR EACH ROW
-  BEGIN
-    IF (NEW.number < 1 OR NEW.number > 6) THEN
-      SIGNAL
-        SQLSTATE '45000'
-      SET MESSAGE_TEXT = 'cannot insert row, number should be within > 1 and < 7 bound';
-    END IF;
-  END^;
-
-CREATE TRIGGER deny_update
-  BEFORE UPDATE
-  ON courses
-  FOR EACH ROW
-  BEGIN
-    IF NEW.number != OLD.number
-    THEN SIGNAL SQLSTATE '45000'
-    SET MESSAGE_TEXT = 'cannot update course number';
-    END IF;
-  END^;^;
