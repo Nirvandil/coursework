@@ -1,5 +1,5 @@
 INSERT INTO university (id, name, description) VALUES
-  (1, 'Крымский государственный инженерно-педагогический университет', '');
+  (1, 'Крымский государственный инженерно-педагогический университет', '')^;
 INSERT INTO auditories (id, description, number) VALUES
   (1,  '', '243б'),
   (2,  '', '233a'),
@@ -9,11 +9,11 @@ INSERT INTO auditories (id, description, number) VALUES
   (6,  '', '189'),
   (7,  '', '236'),
   (8,  '', '243a'),
-  (9,  '', '238a');
+  (9,  '', '238a')^;
 INSERT INTO faculties (id, description, name, university_id) VALUES
-  (2,  'Экономики, менджмента и информационных технологий', 'ЭМиИТ', 1);
+  (2,  'Экономики, менджмента и информационных технологий', 'ЭМиИТ', 1)^;
 INSERT INTO courses (id, number, faculty_id) VALUES
-  (3, 3, 2);
+  (3, 3, 2)^;
 INSERT INTO disciplines (id, description, name) VALUES
   (4,  'То, ради чего стоит жить', 'Базы данных'),
   (5,  '', 'Основы научных исследований'),
@@ -23,9 +23,9 @@ INSERT INTO disciplines (id, description, name) VALUES
   (9,  '', 'Иностранный язык'),
   (10, '', 'Педагогика'),
   (11, '', 'Архитектура встроенных систем'),
-  (12, '', 'Разработка серверных приложений');
+  (12, '', 'Разработка серверных приложений')^;
 INSERT INTO `groups` (id, `name`, course_id) VALUES
-  (5,  'ЗИ16', 3);
+  (5,  'ЗИ16', 3)^;
 INSERT INTO pairs (id, number, start_time, finish_time) VALUES
   (1, 1, '08:00:00', '09:30:00'),
   (2, 2, '09:40:00', '11:10:00'),
@@ -34,7 +34,7 @@ INSERT INTO pairs (id, number, start_time, finish_time) VALUES
   (5, 5, '14:50:00', '16:20:00'),
   (6, 6, '16:30:00', '18:00:00'),
   (7, 7, '18:10:00', '19:40:00'),
-  (8, 8, '19:50:00', '21:20:00');
+  (8, 8, '19:50:00', '21:20:00')^;
 INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES
   (14, 'Владимир', 'Сухарев', 'Александрович', 5),
   (15, 'Алексей', 'Пешкун', 'Анатольевич', 5),
@@ -55,14 +55,14 @@ INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) 
   (30, 'Владимир', 'Чепюк', 'Алимович', 5),
   (31, 'Алексей', 'Зайцев', 'Евгеньевич', 5),
   (32, 'Ян', 'Куимов', 'Анатольевич', 5),
-  (33, 'Дмитрий', 'Макин', 'Александрович', 5);
+  (33, 'Дмитрий', 'Макин', 'Александрович', 5)^;
 INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES
   (15, 'Эльдар', 'Батыр', 'Ибрагимович', 1),
   (16, 'Фатиме', 'Ильясова', 'Серверовна', 1),
   (17, 'Энвер', 'Умеров', 'Айдерович', 1),
   (18, 'Элина', 'Насибуллаева', 'Расимовна', 1),
   (19, 'Зарема', 'Асанова', 'Ризаевна', 1),
-  (20, 'Ленмар', 'Абдурайимов', 'Нариманович', 1);
+  (20, 'Ленмар', 'Абдурайимов', 'Нариманович', 1)^;
 INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES
   (15, 4),
   (16, 5),
@@ -72,12 +72,12 @@ INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES
   (18, 9),
   (19, 10),
   (20, 11),
-  (20, 12);
+  (20, 12)^;
 INSERT INTO time_table (id) VALUES
-  (17);
+  (17)^;
 INSERT INTO pair_types(id, `type`) VALUES
 (2, 'EXAM'),
-(1, 'REGULAR');
+(1, 'REGULAR')^;
 INSERT INTO work_pairs
 (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id)
 VALUES
@@ -90,4 +90,27 @@ VALUES
   (22, '2018-05-14', 4, 6, 5, 2, 17, 17, 1),
   (23, '2018-05-14', 4, 6, 5, 3, 17, 17, 1),
   (24, '2018-05-14', 4, 10, 5, 4, 19, 17, 1),
-  (25, '2018-05-14', 4, 10, 5, 5, 19, 17, 1);
+  (25, '2018-05-14', 4, 10, 5, 5, 19, 17, 1)^;
+
+CREATE TRIGGER check_number
+  BEFORE INSERT
+  ON courses
+  FOR EACH ROW
+  BEGIN
+    IF (NEW.number < 1 OR NEW.number > 6) THEN
+      SIGNAL
+        SQLSTATE '45000'
+      SET MESSAGE_TEXT = 'cannot insert row, number should be within > 1 and < 7 bound';
+    END IF;
+  END^;
+
+CREATE TRIGGER deny_update
+  BEFORE UPDATE
+  ON courses
+  FOR EACH ROW
+  BEGIN
+    IF NEW.number != OLD.number
+    THEN SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'cannot update course number';
+    END IF;
+  END^;^;

@@ -12,6 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PairType extends BaseEntity {
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String type;
 }

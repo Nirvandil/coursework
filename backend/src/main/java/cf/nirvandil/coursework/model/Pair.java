@@ -9,7 +9,11 @@ import javax.validation.constraints.Min;
 import java.time.LocalTime;
 
 @Data
-@Table(name = "PAIRS", indexes = @Index(name = "pair_numbers_idx", columnList = "number", unique = true))
+@Table(name = "PAIRS", indexes = @Index(name = "pair_numbers_idx", columnList = "number", unique = true),
+uniqueConstraints = {
+        @UniqueConstraint(name = "unique_pair_start", columnNames = {"number", "startTime"}),
+        @UniqueConstraint(name = "unique_pair_finish", columnNames = {"number", "finishTime"})
+})
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)

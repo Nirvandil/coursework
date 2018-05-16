@@ -19,7 +19,4 @@ public class Discipline extends BaseEntity {
     @ManyToMany(mappedBy = "disciplines", fetch = FetchType.EAGER)
     private Set<Teacher> teachers;
 
-    public Discipline(String discipline) {
-        this.name = discipline;
-    }
 }
