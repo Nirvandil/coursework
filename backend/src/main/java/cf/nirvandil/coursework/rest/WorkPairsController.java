@@ -25,6 +25,7 @@ public class WorkPairsController {
     private final TeacherRepo teacherRepo;
     private final GroupRepo groupRepo;
     private final PairRepo pairRepo;
+    private final PairTypeRepo pairTypeRepo;
     private final AuditoryRepo auditoryRepo;
     private final TimeTableRepo timeTableRepo;
 
@@ -34,6 +35,7 @@ public class WorkPairsController {
                                TeacherRepo teacherRepo,
                                GroupRepo groupRepo,
                                PairRepo pairRepo,
+                               PairTypeRepo pairTypeRepo,
                                AuditoryRepo auditoryRepo,
                                TimeTableRepo timeTableRepo) {
         this.workPairRepo = workPairRepo;
@@ -41,6 +43,7 @@ public class WorkPairsController {
         this.teacherRepo = teacherRepo;
         this.groupRepo = groupRepo;
         this.pairRepo = pairRepo;
+        this.pairTypeRepo = pairTypeRepo;
         this.auditoryRepo = auditoryRepo;
         this.timeTableRepo = timeTableRepo;
     }
@@ -60,7 +63,9 @@ public class WorkPairsController {
                 .orElseThrow(notFoundEntity("Teacher", String.valueOf(workPairDTO.getTeacherId())));
         Auditory auditory = auditoryRepo.findByNumber(workPairDTO.getAuditoryNumber())
                 .orElseThrow(notFoundEntity("Auditory", workPairDTO.getAuditoryNumber()));
-        WorkPair workPair = new WorkPair(pair, group, discipline, teacher, auditory, workPairDTO.getDate(), workPairDTO.getType());
+        PairType type = pairTypeRepo.findByType(workPairDTO.getType())
+                .orElseThrow(notFoundEntity("PairType", workPairDTO.getType()));
+        WorkPair workPair = new WorkPair(pair, group, discipline, teacher, auditory, workPairDTO.getDate(), type);
         timeTable.addPair(workPair);
         timeTableRepo.save(timeTable);
     }

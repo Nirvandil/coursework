@@ -44,7 +44,7 @@ public class TimeTableController {
                                 workPairDTO.setPairNumber(workPair.getPair().getNumber());
                                 workPairDTO.setTeacher(workPair.getTeacher().getName());
                                 workPairDTO.setId(workPair.getId());
-                                workPairDTO.setType(workPair.getType());
+                                workPairDTO.setType(workPair.getType().getType());
                                 return workPairDTO;
                             }).sorted(comparingInt(WorkPairDTO::getPairNumber))
                             .collect(toList());

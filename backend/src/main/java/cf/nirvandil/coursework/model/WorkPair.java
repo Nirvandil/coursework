@@ -32,13 +32,12 @@ public class WorkPair extends BaseEntity {
     private Auditory auditory;
     @Column(nullable = false)
     private LocalDate date;
-    @Column(nullable = false)
-    @Enumerated(STRING)
-    private WorkPairType type;
+    @ManyToOne(optional = false)
+    private PairType type;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private TimeTable timeTable;
 
-    public WorkPair(Pair pair, Group group, Discipline discipline, Teacher teacher, Auditory auditory, LocalDate date, WorkPairType type) {
+    public WorkPair(Pair pair, Group group, Discipline discipline, Teacher teacher, Auditory auditory, LocalDate date, PairType type) {
         this.pair = pair;
         this.group = group;
         this.discipline = discipline;

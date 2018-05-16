@@ -1,6 +1,5 @@
 package cf.nirvandil.coursework.rest.dto;
 
-import cf.nirvandil.coursework.model.WorkPairType;
 import lombok.*;
 
 import javax.validation.constraints.*;
@@ -29,5 +28,5 @@ public class WorkPairDTO {
     @NotNull
     private Long timeTableId;
     @NotNull
-    private WorkPairType type;
+    private String type;
 }
