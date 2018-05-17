@@ -32,7 +32,8 @@ public class DisciplineController {
     }
 
     private DisciplineDTO toDisciplineDTO(Discipline discipline) {
-        return new DisciplineDTO(discipline.getName(), discipline.getDescription(), discipline.getTeachers().stream()
+        return new DisciplineDTO(discipline.getId(), discipline.getName(), discipline.getDescription(),
+                discipline.getTeachers().stream()
                 .map(TeacherDTO::new).collect(toList()));
     }
 }

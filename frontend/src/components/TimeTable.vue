@@ -59,9 +59,6 @@
              @filtered="onFiltered"
     >
       <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click.stop="changePair(row.item)">
-          Изменить
-        </b-button>
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-button size="sm" variant="danger" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
           Удалить
@@ -272,9 +269,6 @@
       },
       closeAddForm(button) {
         this.$root.$emit('bv::hide::modal', 'addPair', button)
-      },
-      changePair(pair) {
-        alert(JSON.stringify(pair))
       },
       filterDisciplines(value) {
         this.disciplines = this.disciplines.filter(disc => {

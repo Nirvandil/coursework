@@ -6,6 +6,8 @@ import Discipline from '../components/Discipline'
 import Teacher from '../components/Teacher'
 import Student from '../components/Student'
 import Auditory from '../components/Auditory'
+import Statistic from '../components/Statistic'
+import UserGuide from '../components/UserGuide'
 
 Vue.use(Router)
 
@@ -40,6 +42,16 @@ export default new Router({
       path: '/auditories',
       name: 'Auditory',
       component: Auditory
+    },
+    {
+      path: '/statistic',
+      name: 'Statistic',
+      component: Statistic
+    },
+    {
+      path: '/help',
+      name: 'UserGuide',
+      component: UserGuide
     }
   ]
 })
