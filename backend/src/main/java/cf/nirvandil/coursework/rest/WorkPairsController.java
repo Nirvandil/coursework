@@ -3,7 +3,9 @@ package cf.nirvandil.coursework.rest;
 import cf.nirvandil.coursework.model.*;
 import cf.nirvandil.coursework.repo.*;
 import cf.nirvandil.coursework.rest.dto.WorkPairDTO;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import javax.validation.Valid;
 import java.util.function.Supplier;
 
 import static java.lang.String.format;
+import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @Transactional
@@ -74,6 +77,13 @@ public class WorkPairsController {
     public ResponseEntity<Void> deleteWorkPair(@PathVariable Long id) {
         workPairRepo.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @ResponseBody
+    @ResponseStatus(CONFLICT)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public String handleConstraint(Exception e) {
+        return ((ConstraintViolationException) e.getCause()).getSQLException().getMessage();
     }
 
     private Supplier<EntityNotFoundException> notFoundEntity(String name, String value) {

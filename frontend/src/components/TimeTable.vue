@@ -146,6 +146,7 @@
         </b-btn>
       </div>
     </b-modal>
+    <b-alert :show="showError" variant="danger" dismissible @dismissed="showError=false">{{errorMsg}}</b-alert>
   </b-container>
 </template>
 
@@ -189,7 +190,9 @@
         groups: [],
         disciplines: [],
         auditories: [],
-        timeTableId: null
+        timeTableId: null,
+        showError: false,
+        errorMsg: ''
       }
     },
     computed: {
@@ -251,7 +254,11 @@
         this.form.timeTableId = this.timeTableId
         AXIOS.post('/work-pairs', this.form)
           .then(_ => this.$refs.table.refresh())
-          .catch(console.log)
+          .catch(err => {
+            console.log(err)
+            this.showError = true
+            this.errorMsg = 'Ошибка: ' + err.response.data
+          })
       },
       onReset(evt) {
         evt.preventDefault()
