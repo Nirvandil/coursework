@@ -1,93 +1,121 @@
-INSERT INTO university (id, name, description) VALUES
-  (1, 'Крымский государственный инженерно-педагогический университет', '')^;
-INSERT INTO auditories (id, description, number) VALUES
-  (1,  '', '243б'),
-  (2,  '', '233a'),
-  (3,  '', '239'),
-  (4,  '', '245'),
-  (5,  '', '247'),
-  (6,  '', '189'),
-  (7,  '', '236'),
-  (8,  '', '243a'),
-  (9,  '', '238a')^;
-INSERT INTO faculties (id, description, name, university_id) VALUES
-  (2,  'Экономики, менджмента и информационных технологий', 'ЭМиИТ', 1)^;
-INSERT INTO courses (id, number, faculty_id) VALUES
-  (3, 3, 2)^;
-INSERT INTO disciplines (id, description, name) VALUES
-  (4,  'То, ради чего стоит жить', 'Базы данных'),
-  (5,  '', 'Основы научных исследований'),
-  (6,  '', 'Теория вероятностей и математическая статистика'),
-  (7,  '', 'Информатика и программирование'),
-  (8,  '', 'Физика'),
-  (9,  '', 'Иностранный язык'),
-  (10, '', 'Педагогика'),
-  (11, '', 'Архитектура встроенных систем'),
-  (12, '', 'Разработка серверных приложений')^;
-INSERT INTO `groups` (id, `name`, course_id) VALUES
-  (5,  'ЗИ16', 3)^;
-INSERT INTO pairs (id, number, start_time, finish_time) VALUES
-  (1, 1, '08:00:00', '09:30:00'),
-  (2, 2, '09:40:00', '11:10:00'),
-  (3, 3, '11:30:00', '13:00:00'),
-  (4, 4, '13:10:00', '14:40:00'),
-  (5, 5, '14:50:00', '16:20:00'),
-  (6, 6, '16:30:00', '18:00:00'),
-  (7, 7, '18:10:00', '19:40:00'),
-  (8, 8, '19:50:00', '21:20:00')^;
-INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES
-  (14, 'Владимир', 'Сухарев', 'Александрович', 5),
-  (15, 'Алексей', 'Пешкун', 'Анатольевич', 5),
-  (16, 'Сергей', 'Акулиненко', 'Игоревич', 5),
-  (17, 'Анастасия', 'Дейнега', 'Геннадьевна', 5),
-  (18, 'Андрей', 'Захарчук', 'Викторович', 5),
-  (19, 'Александр', 'Кех', 'Викторович', 5),
-  (20, 'Александр', 'Котляров', 'Анатольевич', 5),
-  (21, 'Ильяс', 'Мамадиев', 'Аблитарович', 5),
-  (22, 'Алим', 'Меназизов', 'Ленурович', 5),
-  (23, 'Родион', 'Мирошниченко', 'Андреевич', 5),
-  (24, 'Азиз', 'Ниметуллаев', 'Шевкетович', 5),
-  (25, 'Андрей', 'Реканд', 'Дмитриевич', 5),
-  (26, 'Константин', 'Смирнов', 'Игоревич', 5),
-  (27, 'Николай', 'Сухин', 'Владимирович', 5),
-  (28, 'Инна', 'Таракчеева', 'Николаевна', 5),
-  (29, 'Юрий', 'Удод', 'Юрьевич', 5),
-  (30, 'Владимир', 'Чепюк', 'Алимович', 5),
-  (31, 'Алексей', 'Зайцев', 'Евгеньевич', 5),
-  (32, 'Ян', 'Куимов', 'Анатольевич', 5),
-  (33, 'Дмитрий', 'Макин', 'Александрович', 5)^;
-INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES
-  (15, 'Эльдар', 'Батыр', 'Ибрагимович', 1),
-  (16, 'Фатиме', 'Ильясова', 'Серверовна', 1),
-  (17, 'Энвер', 'Умеров', 'Айдерович', 1),
-  (18, 'Элина', 'Насибуллаева', 'Расимовна', 1),
-  (19, 'Зарема', 'Асанова', 'Ризаевна', 1),
-  (20, 'Ленмар', 'Абдурайимов', 'Нариманович', 1)^;
-INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES
-  (15, 4),
-  (16, 5),
-  (16, 7),
-  (17, 6),
-  (17, 8),
-  (18, 9),
-  (19, 10),
-  (20, 11),
-  (20, 12)^;
-INSERT INTO time_table (id) VALUES
-  (17)^;
-INSERT INTO pair_types(id, `type`) VALUES
-(2, 'EXAM'),
-(1, 'REGULAR')^;
-INSERT INTO work_pairs
-(id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id)
-VALUES
-  (16, '2018-05-11', 1, 9, 5, 2, 18, 17, 1),
-  (17, '2018-05-11', 2, 6, 5, 3, 17, 17, 1),
-  (18, '2018-05-11', 7, 5, 5, 4, 16, 17, 1),
-  (19, '2018-05-11', 3, 9, 5, 5, 15, 17, 1),
-  (20, '2018-05-12', 3, 6, 5, 2, 17, 17, 1),
-  (21, '2018-05-12', 3, 6, 5, 3, 17, 17, 1),
-  (22, '2018-05-14', 4, 6, 5, 2, 17, 17, 1),
-  (23, '2018-05-14', 4, 6, 5, 3, 17, 17, 1),
-  (24, '2018-05-14', 4, 10, 5, 4, 19, 17, 1),
-  (25, '2018-05-14', 4, 10, 5, 5, 19, 17, 1)^;
+INSERT INTO university (id, description, name) VALUES (1, '', 'Крымский государственный инженерно-педагогический университет');
+INSERT INTO faculties (id, description, name, university_id) VALUES (2, 'Экономики, менджмента и информационных технологий', 'ЭМиИТ', 1);
+INSERT INTO courses (id, number, faculty_id) VALUES (3, 3, 2);
+INSERT INTO `groups` (id, name, course_id) VALUES (5, 'ЗИ16', 3);
+INSERT INTO auditories (id, description, number) VALUES (1, '', '243б');
+INSERT INTO auditories (id, description, number) VALUES (2, '', '233a');
+INSERT INTO auditories (id, description, number) VALUES (3, '', '239');
+INSERT INTO auditories (id, description, number) VALUES (4, '', '245');
+INSERT INTO auditories (id, description, number) VALUES (5, '', '247');
+INSERT INTO auditories (id, description, number) VALUES (6, '', '189');
+INSERT INTO auditories (id, description, number) VALUES (7, '', '236');
+INSERT INTO auditories (id, description, number) VALUES (8, '', '243a');
+INSERT INTO auditories (id, description, number) VALUES (9, '', '238a');
+INSERT INTO auditories (id, description, number) VALUES (1051, null, '238б');
+INSERT INTO auditories (id, description, number) VALUES (1052, null, '233б');
+INSERT INTO auditories (id, description, number) VALUES (1053, null, '237');
+INSERT INTO disciplines (id, description, name) VALUES (4, 'То, ради чего стоит жить', 'Базы данных');
+INSERT INTO disciplines (id, description, name) VALUES (5, '', 'Основы научных исследований');
+INSERT INTO disciplines (id, description, name) VALUES (6, '', 'Теория вероятностей и математическая статистика');
+INSERT INTO disciplines (id, description, name) VALUES (7, '', 'Информатика и программирование');
+INSERT INTO disciplines (id, description, name) VALUES (8, '', 'Физика');
+INSERT INTO disciplines (id, description, name) VALUES (9, '', 'Иностранный язык');
+INSERT INTO disciplines (id, description, name) VALUES (10, '', 'Педагогика');
+INSERT INTO disciplines (id, description, name) VALUES (11, '', 'Архитектура встроенных систем');
+INSERT INTO disciplines (id, description, name) VALUES (12, '', 'Разработка серверных приложений');
+INSERT INTO pair_types (id, type) VALUES (2, 'EXAM');
+INSERT INTO pair_types (id, type) VALUES (1, 'REGULAR');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (1, '09:30:00', 1, '08:00:00');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (2, '11:10:00', 2, '09:40:00');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (3, '13:00:00', 3, '11:30:00');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (4, '14:40:00', 4, '13:10:00');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (5, '16:20:00', 5, '14:50:00');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (6, '18:00:00', 6, '16:30:00');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (7, '19:40:00', 7, '18:10:00');
+INSERT INTO pairs (id, finish_time, number, start_time) VALUES (8, '21:20:00', 8, '19:50:00');
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (14, 'Владимир', 'Сухарев', 'Александрович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (15, 'Алексей', 'Пешкун', 'Анатольевич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (16, 'Сергей', 'Акулиненко', 'Игоревич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (17, 'Анастасия', 'Дейнега', 'Геннадьевна', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (18, 'Андрей', 'Захарчук', 'Викторович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (19, 'Александр', 'Кех', 'Викторович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (20, 'Александр', 'Котляров', 'Анатольевич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (21, 'Ильяс', 'Мамадиев', 'Аблитарович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (22, 'Алим', 'Меназизов', 'Ленурович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (23, 'Родион', 'Мирошниченко', 'Андреевич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (24, 'Азиз', 'Ниметуллаев', 'Шевкетович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (25, 'Андрей', 'Реканд', 'Дмитриевич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (26, 'Константин', 'Смирнов', 'Игоревич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (27, 'Николай', 'Сухин', 'Владимирович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (28, 'Инна', 'Таракчеева', 'Николаевна', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (29, 'Юрий', 'Удод', 'Юрьевич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (30, 'Владимир', 'Чепюк', 'Алимович', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (31, 'Алексей', 'Зайцев', 'Евгеньевич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (32, 'Ян', 'Куимов', 'Анатольевич', 5);
+INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) VALUES (33, 'Дмитрий', 'Макин', 'Александрович', 5);
+INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES (15, 'Эльдар', 'Батыр', 'Ибрагимович', 1);
+INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES (16, 'Фатиме', 'Ильясова', 'Серверовна', 1);
+INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES (17, 'Энвер', 'Умеров', 'Айдерович', 1);
+INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES (18, 'Элина', 'Насибуллаева', 'Расимовна', 1);
+INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES (19, 'Зарема', 'Асанова', 'Ризаевна', 1);
+INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES (20, 'Ленмар', 'Абдурайимов', 'Нариманович', 1);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (15, 4);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (16, 5);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (17, 6);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (16, 7);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (17, 8);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (18, 9);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (19, 10);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (20, 11);
+INSERT INTO teachers_disciplines (teachers_id, disciplines_id) VALUES (20, 12);
+INSERT INTO time_table (id) VALUES (17);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (16, '2018-05-11', 1, 9, 5, 2, 18, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (17, '2018-05-11', 2, 6, 5, 3, 17, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (18, '2018-05-11', 7, 5, 5, 4, 16, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (19, '2018-05-11', 3, 9, 5, 5, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (20, '2018-05-12', 3, 6, 5, 2, 17, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (21, '2018-05-12', 3, 6, 5, 3, 17, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (22, '2018-05-14', 4, 6, 5, 2, 17, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (23, '2018-05-14', 4, 6, 5, 3, 17, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (24, '2018-05-14', 4, 10, 5, 4, 19, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (25, '2018-05-14', 4, 10, 5, 5, 19, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1004, '2018-05-15', 5, 5, 5, 4, 16, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1005, '2018-05-15', 5, 5, 5, 5, 16, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1006, '2018-05-16', 7, 4, 5, 2, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1007, '2018-05-16', 6, 4, 5, 3, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1009, '2018-05-16', 1, 5, 5, 4, 16, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1010, '2018-05-16', 7, 5, 5, 5, 16, 17, 2);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1011, '2018-05-17', 7, 4, 5, 2, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1012, '2018-05-17', 8, 4, 5, 3, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1013, '2018-05-17', 5, 11, 5, 4, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1014, '2018-05-17', 5, 11, 5, 5, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1015, '2018-05-18', 1051, 11, 5, 1, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1016, '2018-05-18', 1051, 11, 5, 2, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1017, '2018-05-18', 2, 6, 5, 3, 17, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1018, '2018-05-18', 2, 6, 5, 4, 17, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1019, '2018-05-19', 3, 6, 5, 2, 17, 17, 2);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1021, '2018-05-21', 1052, 4, 5, 2, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1022, '2018-05-21', 1052, 4, 5, 3, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1023, '2018-05-21', 4, 10, 5, 4, 19, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1024, '2018-05-21', 4, 10, 5, 5, 19, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1025, '2018-05-22', 1052, 4, 5, 2, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1027, '2018-05-22', 1052, 4, 5, 3, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1028, '2018-05-22', 5, 11, 5, 4, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1030, '2018-05-22', 5, 9, 5, 5, 18, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1031, '2018-05-23', 1053, 4, 5, 2, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1032, '2018-05-23', 1053, 4, 5, 3, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1033, '2018-05-23', 2, 11, 5, 4, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1034, '2018-05-23', 2, 11, 5, 5, 20, 17, 2);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1035, '2018-05-24', 9, 4, 5, 2, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1036, '2018-05-24', 9, 4, 5, 3, 15, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1037, '2018-05-24', 7, 10, 5, 4, 19, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1038, '2018-05-24', 7, 10, 5, 5, 19, 17, 2);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1039, '2018-05-25', 1051, 11, 5, 1, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1040, '2018-05-25', 1051, 11, 5, 2, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1041, '2018-05-25', 8, 9, 5, 3, 18, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1042, '2018-05-25', 1, 9, 5, 4, 18, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1043, '2018-05-26', 1051, 11, 5, 2, 20, 17, 1);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1044, '2018-05-26', 1051, 11, 5, 3, 20, 17, 2);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1045, '2018-05-29', 1, 9, 5, 5, 18, 17, 2);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1046, '2018-05-30', 1053, 4, 5, 2, 15, 17, 2);
+INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id, teacher_id, time_table_id, type_id) VALUES (1047, '2018-05-30', 1052, 4, 5, 3, 15, 17, 2);

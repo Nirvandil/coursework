@@ -1,6 +1,5 @@
 package cf.nirvandil.coursework.repo;
 
-import cf.nirvandil.coursework.model.Teacher;
 import cf.nirvandil.coursework.model.WorkPair;
 import org.springframework.data.jpa.repository.JpaRepository;
 

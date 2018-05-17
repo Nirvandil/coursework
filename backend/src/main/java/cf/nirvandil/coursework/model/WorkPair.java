@@ -6,14 +6,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-import static javax.persistence.EnumType.STRING;
-
 @Data
 @Table(name = "WORK_PAIRS",
-        uniqueConstraints = @UniqueConstraint(
-                name = "unique_pair",
-                columnNames = {"pair_id", "date", "discipline_id", "auditory_id"}
-        )
+        uniqueConstraints = {
+                @UniqueConstraint(name = "unique_pair", columnNames = {"pair_id", "date", "discipline_id", "auditory_id"}),
+                @UniqueConstraint(name = "unique_pair_num", columnNames = {"group_id", "pair_id", "date"})
+        }
 )
 @Entity
 @EqualsAndHashCode(callSuper = true, exclude = "timeTable")
