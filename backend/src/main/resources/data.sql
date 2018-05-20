@@ -5,7 +5,7 @@ INSERT INTO faculties (id, description, name, university_id) VALUES
   (2, 'Экономики, менджмента и информационных технологий', 'ЭМиИТ', 1);
 
 INSERT INTO courses (id, number, faculty_id) VALUES
-  (3, 3, 2);
+  (3, 2, 2);
 
 INSERT INTO `groups` (id, name, course_id) VALUES
   (5, 'ЗИ16', 3);
@@ -69,7 +69,9 @@ INSERT INTO students (id, first_name, last_name, middle_name, student_group_id) 
   (30, 'Владимир', 'Чепюк', 'Алимович', 5),
   (31, 'Алексей', 'Зайцев', 'Евгеньевич', 5),
   (32, 'Ян', 'Куимов', 'Анатольевич', 5),
-  (33, 'Дмитрий', 'Макин', 'Александрович', 5);
+  (33, 'Дмитрий', 'Макин', 'Александрович', 5),
+  (34, 'Владислав', 'Беспалый', 'Вячеславович', 5),
+  (35, 'Алёна', 'Темчук-Олейник', 'Владимировна', 5);
 
 INSERT INTO teachers (id, first_name, last_name, middle_name, university_id) VALUES
   (15, 'Эльдар', 'Батыр', 'Ибрагимович', 1),
@@ -142,3 +144,6 @@ INSERT INTO work_pairs (id, date, auditory_id, discipline_id, group_id, pair_id,
   (1045, '2018-05-29', 1, 9, 5, 5, 18, 17, 2),
   (1046, '2018-05-30', 1053, 4, 5, 2, 15, 17, 2),
   (1047, '2018-05-30', 1052, 4, 5, 3, 15, 17, 2);
+ALTER TABLE work_pairs ADD CONSTRAINT real_teacher_disc
+  FOREIGN KEY (teacher_id, discipline_id)
+  REFERENCES teachers_disciplines (teachers_id, disciplines_id);
