@@ -8,6 +8,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DisciplineDTO {
+    private Long id;
     private String name;
     private String description;
     private List<TeacherDTO> teachers;

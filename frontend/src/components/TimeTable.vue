@@ -59,9 +59,6 @@
              @filtered="onFiltered"
     >
       <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click.stop="changePair(row.item)">
-          Изменить
-        </b-button>
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-button size="sm" variant="danger" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
           Удалить
@@ -104,6 +101,15 @@
                          v-model="form.discipline">
           </b-form-select>
         </b-form-group>
+        <b-form-group id="type"
+                      label="Тип занятия"
+                      label-for="discipline">
+          <b-form-select id="exampleInput7"
+                         :options="[{text: 'Экзамен', value: 'EXAM'}, {text: 'Обычное', value: 'REGULAR'}]"
+                         required
+                         v-model="form.type">
+          </b-form-select>
+        </b-form-group>
         <b-form-group id="auditory"
                       label="Аудитория"
                       label-for="auditory">
@@ -140,6 +146,7 @@
         </b-btn>
       </div>
     </b-modal>
+    <b-alert :show="showError" variant="danger" dismissible @dismissed="showError=false">{{errorMsg}}</b-alert>
   </b-container>
 </template>
 
@@ -176,13 +183,16 @@
           discipline: null,
           auditoryNumber: null,
           date: null,
-          pairNumber: null
+          pairNumber: null,
+          type: 'REGULAR'
         },
         teachers: [],
         groups: [],
         disciplines: [],
         auditories: [],
-        timeTableId: null
+        timeTableId: null,
+        showError: false,
+        errorMsg: ''
       }
     },
     computed: {
@@ -226,6 +236,9 @@
               if (today === pairDate) {
                 item._rowVariant = 'info'
               }
+              if (item.type === 'EXAM') {
+                item._rowVariant = 'warning'
+              }
               return item
             })
           })
@@ -241,7 +254,11 @@
         this.form.timeTableId = this.timeTableId
         AXIOS.post('/work-pairs', this.form)
           .then(_ => this.$refs.table.refresh())
-          .catch(console.log)
+          .catch(err => {
+            console.log(err)
+            this.showError = true
+            this.errorMsg = 'Ошибка: ' + err.response.data
+          })
       },
       onReset(evt) {
         evt.preventDefault()
@@ -259,9 +276,6 @@
       },
       closeAddForm(button) {
         this.$root.$emit('bv::hide::modal', 'addPair', button)
-      },
-      changeAuditory(pair) {
-        alert(JSON.stringify(pair))
       },
       filterDisciplines(value) {
         this.disciplines = this.disciplines.filter(disc => {

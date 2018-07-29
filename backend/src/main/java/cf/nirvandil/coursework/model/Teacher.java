@@ -11,8 +11,10 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true, exclude = "disciplines")
+@EqualsAndHashCode(callSuper = true, exclude = {"disciplines", "university"})
 public class Teacher extends NamedEntity {
+    @ManyToOne(optional = false)
+    private University university;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "TEACHER_DISCIPLINES")
     private Set<Discipline> disciplines;

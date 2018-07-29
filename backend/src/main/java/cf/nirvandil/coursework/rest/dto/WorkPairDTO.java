@@ -27,4 +27,6 @@ public class WorkPairDTO {
     private Long teacherId;
     @NotNull
     private Long timeTableId;
+    @NotNull
+    private String type;
 }

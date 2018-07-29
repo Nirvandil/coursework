@@ -8,13 +8,13 @@ import java.time.LocalDate;
 
 @Data
 @Table(name = "WORK_PAIRS",
-        uniqueConstraints = @UniqueConstraint(
-                name = "unique_pair",
-                columnNames = {"pair_id", "date", "discipline_id", "auditory_id"}
-        )
+        uniqueConstraints = {
+                @UniqueConstraint(name = "unique_pair", columnNames = {"pair_id", "date", "discipline_id", "auditory_id"}),
+                @UniqueConstraint(name = "unique_pair_num", columnNames = {"group_id", "pair_id", "date"})
+        }
 )
 @Entity
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "timeTable")
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkPair extends BaseEntity {
@@ -30,4 +30,18 @@ public class WorkPair extends BaseEntity {
     private Auditory auditory;
     @Column(nullable = false)
     private LocalDate date;
+    @ManyToOne(optional = false)
+    private PairType type;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private TimeTable timeTable;
+
+    public WorkPair(Pair pair, Group group, Discipline discipline, Teacher teacher, Auditory auditory, LocalDate date, PairType type) {
+        this.pair = pair;
+        this.group = group;
+        this.discipline = discipline;
+        this.teacher = teacher;
+        this.auditory = auditory;
+        this.date = date;
+        this.type = type;
+    }
 }

@@ -97,6 +97,7 @@
         </b-btn>
       </div>
     </b-modal>
+    <b-alert :show="showError" variant="danger" dismissible @dismissed="showError=false">{{errorMsg}}</b-alert>
   </b-container>
 </template>
 
@@ -126,7 +127,9 @@
         form: {
           number: null,
           description: null
-        }
+        },
+        showError: false,
+        errorMsg: ''
       }
     },
     computed: {
@@ -165,7 +168,8 @@
           .then(_ => this.$refs.table.refresh())
           .catch(err => {
             console.log(err)
-            alert('Ошибка: ' + err.response.data)
+            this.showError = true
+            this.errorMsg = 'Ошибка: ' + err.response.data
           })
       },
       createAuditory(evt) {
@@ -174,7 +178,8 @@
           .then(_ => this.$refs.table.refresh())
           .catch(err => {
             console.log(err)
-            alert('Ошибка: ' + err.response.data)
+            this.showError = true
+            this.errorMsg = 'Ошибка: ' + err.response.data
           })
       },
       onReset(evt) {

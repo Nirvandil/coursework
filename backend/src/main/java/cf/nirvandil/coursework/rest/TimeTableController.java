@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
+import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.toList;
 
 @Transactional
@@ -42,8 +44,9 @@ public class TimeTableController {
                                 workPairDTO.setPairNumber(workPair.getPair().getNumber());
                                 workPairDTO.setTeacher(workPair.getTeacher().getName());
                                 workPairDTO.setId(workPair.getId());
+                                workPairDTO.setType(workPair.getType().getType());
                                 return workPairDTO;
-                            }).sorted(Comparator.comparingInt(WorkPairDTO::getPairNumber))
+                            }).sorted(comparingInt(WorkPairDTO::getPairNumber))
                             .collect(toList());
                     timeTableDTO.setWorkPairs(workPairDTOS);
                     timeTableDTO.setId(timeTable.getId());
